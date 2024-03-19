@@ -13,6 +13,55 @@ body {
     display: inline;
 }
 
+#search-bar {
+    background-color: #0000ff;
+    border-color: #0000ff;
+    position: relative;
+    z-index: 1000;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+#search {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 100%;
+}
+
+.main {
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #b7bec8;
+    border-radius: 6px;
+}
+  
+.main h2 {
+  line-height: 1;
+  color: inherit;
+}
+
+.main p {
+  line-height: 1.4;
+  font-size: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    .main {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .main h1 {
+      font-size: 63px;
+    }
+  }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

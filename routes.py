@@ -21,6 +21,12 @@ cities = ["Санкт-Петербург", "Москва"]
 city_to_weather = {"Санкт-Петербург" : CityWeather(Weather.CLOUDY, 5, -1),
                    "Москва" : CityWeather(Weather.SUNNY, 10, 2)}
 
+def show_weather(weather: Weather) -> str:
+    if weather == Weather.CLOUDY:
+        return "Пассмурно"
+    else:
+        return "Солнечно"
+
 @route('/')
 @route('/home')
 @view('index')
@@ -57,11 +63,13 @@ def city_weather():
     try:
         city_index = int(request.GET.get('city', '').strip())
         city = cities[city_index]
+        weather = city_to_weather[city]
         return dict(
             title='Погода в городе: ' + city,
             message='',
             year=datetime.now().year,
-            weather=city_to_weather[city]
+            weather=weather,
+            weather_show=show_weather(weather.weather)
         )
     except:
         return '<h1>Запрашиваемый город не найден</h1>'
