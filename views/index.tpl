@@ -1,6 +1,6 @@
 % rebase('layout.tpl', title='Home Page', year=year)
 
-<div id="search-bar" data-text="dwefwe">
+<div id="search-bar">
     <input type="text" tabindex="0" name="name" id="search"  placeholder="Поиск города" bem-id="224" autocomplete="off">
 </div>
 

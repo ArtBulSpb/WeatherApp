@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div style="background-color: #c4c4c4;" class="navbar navbar-default navbar-fixed-top">
         <div class="container">          
             <div class="navbar-header">             
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,7 +46,6 @@
             </div>
         </div>
     </div>
-
     <div class="container body-content">
         {{!base}}
         <hr />
@@ -54,10 +53,8 @@
             <p>&copy; {{ year }} - Погода в России</p>
         </footer>
     </div>
-
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
-
 </body>
 </html>
