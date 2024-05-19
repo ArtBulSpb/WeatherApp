@@ -1,3 +1,13 @@
+.aritcle_container {
+    margin-top: 10px;
+    border: 10px dotted yellow;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
