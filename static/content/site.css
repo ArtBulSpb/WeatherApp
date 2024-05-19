@@ -8,6 +8,17 @@
     justify-content: center;
 }
 
+.aritcle_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+p + p {
+    margin-left: 10px;
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;

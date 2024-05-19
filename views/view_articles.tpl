@@ -4,10 +4,13 @@
 
     <div>
         %for article in articles:
-            <div class = "aritcle_container">
-                <p><a>{{article.author}}</a></p>
+            <div class="aritcle_container">
+                <div class="aritcle_header">
+                    <p><h3>{{article.author}}</h3></p>
+                    <p><a>{{article.date}}</a></p>
+                </div>
+                
                 <p><h3>{{article.title}}</a></h3>
-                <p><a>{{article.date}}</a></p>
             </div>
         %end
     </div>        

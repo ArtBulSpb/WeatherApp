@@ -2,6 +2,8 @@
 Routes and views for the bottle application.
 """
 
+import json
+import os
 from bottle import route, view, request, post, redirect
 from datetime import date, datetime, timedelta
 from enum import Enum
@@ -74,6 +76,8 @@ def city_weather():
     except:
         return '<h1>Запрашиваемый город не найден</h1>'
 
+WRITEPATH = 'articles.json'
+
 def parse_date(datestr: str) -> date | str:
     """
     Функция, проверяющая что дата соответствует формату iso и
@@ -95,12 +99,42 @@ class Article:
     self.title = title
     self.author = author
     self.date = date
+  
+  def to_dict(self):
+        return {
+            "title": self.title,
+            "author": self.author,
+            "date": self.date.isoformat()  # Convert date to ISO format string
+        }
 
-articles = [Article("Статья1", "Автор1", date.today()), Article("Статья2", "Автор2", date.today())]
+  @staticmethod
+  def from_dict(data):
+        return Article(
+            title=data["title"],
+            author=data["author"],
+            date=date.fromisoformat(data["date"])  # Convert ISO format string to date
+        )
+
+
+articles = [] # [Article("Статья1", "Автор1", date.today()), Article("Статья2", "Автор2", date.today())]
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, o):
+        if hasattr(o, "reprJson"):
+            return o.reprJson()
+        else:
+            return super().default(o)
 
 @route('/view_articles')
 @view('view_articles')
 def view_articles(err=""):
+    global articles
+    if not os.path.exists(WRITEPATH):
+        with open(WRITEPATH, 'a+') as json_file:
+            json.dump([], json_file, cls=MyEncoder)
+    with open(WRITEPATH, 'r+') as json_file:
+        articles_dict = json.load(json_file)
+        articles = [Article.from_dict(article) for article in articles_dict]
     return dict(
         error=err,
         articles=articles,
@@ -113,15 +147,30 @@ def add_article():
     title = request.forms.get('TITLE')
     release_date = request.forms.get('DATE')
 
-    if author == "" or title == "":
+    if len(author) < 2 or any(ch.isdigit() for ch in author):
         # Возращаемся на страницу и показываем пользователю ошибку
-        return view_articles("Не все поля заполнены")
+        return view_articles("Имя автора не должно содеражть цифр и быть меньше двух символов")
+    if title == "":
+        return view_articles("Название не может быть пустым")
     
     release_date_or_err = parse_date(release_date)
     if isinstance(release_date_or_err, str):
         # Если функция вернула строку, значит это сообщение об ошибке
         return view_articles(release_date_or_err)
     
-    articles.append(Article(title, author, release_date_or_err))
+    
+    global articles
+    # создаем файл если его нет
+    if not os.path.exists(WRITEPATH):
+        with open(WRITEPATH, 'a+') as json_file:
+            json.dump([], json_file) 
+    with open(WRITEPATH, 'r+') as json_file:
+        articles_dict = json.load(json_file)
+        articles = [Article.from_dict(article) for article in articles_dict]
+        articles.append(Article(title, author, release_date_or_err))
+        # перезаписываем файл с новыми файлами
+        json_file.seek(0)
+        json.dump([article.to_dict() for article in articles], json_file)
 
+    print(articles)
     redirect('/view_articles')
