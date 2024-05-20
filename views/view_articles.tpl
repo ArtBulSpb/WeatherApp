@@ -1,27 +1,34 @@
 % rebase('layout.tpl', title='Полезные статьи', year=date_today.year)
 
 <div class="main">
-
-    <div>
+    <div class="articles-container">
         %for article in articles:
-            <div class="aritcle_container">
-                <div class="aritcle_header">
-                    <p><h3>{{article.author}}</h3></p>
-                    <p><a>{{article.date}}</a></p>
+            <div class="article-container">
+                <div class="article-header">
+                    <h4>{{article.author}}</h4>
+                    <p class="article-date">{{article.date}}</p>
                 </div>
-                
-                <p><h3>{{article.title}}</a></h3>
+                <h1 class="article-title">{{article.title}}</h1>
+                <p>{{article.description}}</p>
             </div>
         %end
     </div>        
-
 </div>
-    <p><a>{{error}}</a></p>
-    <form method="post">
-        <p>
-            <p><input type="text" size="50" name="AUTHOR" placeholder="Автор статьи"></p>
-            <p><input type="text" size="50" name="TITLE" placeholder="Название статьи"></p>
-            <p><input type="date" name="DATE" required="true" value="{{date_today}}" min="2000-01-01" max="{{date_today}}" /></p>
-            <p><input class="btn btn-default" type="submit" value="Send"></p>
-        </p>
-    </form>
+<p class="error-message"><a>{{error}}</a></p>
+<form method="post" class="article-form">
+    <div class="form-group">
+        <input type="text" size="50" name="AUTHOR" placeholder="Автор статьи">
+    </div>
+    <div class="form-group">
+        <input type="text" size="50" name="TITLE" placeholder="Название статьи">
+    </div>
+    <div class="form-group">
+        <textarea name="DESCRIPTION" placeholder="Описание" cols="40" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="date" name="DATE" required value="{{date_today}}" min="2000-01-01" max="{{date_today}}">
+    </div>
+    <div class="form-group">
+        <input class="btn btn-default" type="submit" value="Send">
+    </div>
+</form>
