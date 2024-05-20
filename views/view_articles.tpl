@@ -1,19 +1,6 @@
 % rebase('layout.tpl', title='Полезные статьи', year=date_today.year)
 
-<div class="main">
-    <div class="articles-container">
-        %for article in articles:
-            <div class="article-container">
-                <div class="article-header">
-                    <h4>{{article.author}}</h4>
-                    <p class="article-date">{{article.date}}</p>
-                </div>
-                <h1 class="article-title">{{article.title}}</h1>
-                <p>{{article.description}}</p>
-            </div>
-        %end
-    </div>        
-</div>
+
 <p class="error-message"><a>{{error}}</a></p>
 <form method="post" class="article-form">
     <div class="form-group">
@@ -32,3 +19,17 @@
         <input class="btn btn-default" type="submit" value="Send">
     </div>
 </form>
+<div class="main">
+    <div class="articles-container">
+        %for article in articles:
+            <div class="article-container">
+                <div class="article-header">
+                    <h4>{{article.author}}</h4>
+                    <p class="article-date">{{article.date}}</p>
+                </div>
+                <h1 class="article-title">{{article.title}}</h1>
+                <p>{{article.description}}</p>
+            </div>
+        %end
+    </div>        
+</div>

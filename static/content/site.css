@@ -9,7 +9,6 @@ body {
 .main {
     width: 80%;
     margin: 0 auto;
-    margin-top: 30px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -50,8 +49,9 @@ body {
 
 /* Error message styles */
 .error-message {
+    margin-top: 50px;
     color: #d9534f;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 1.1em;
 }
 

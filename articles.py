@@ -28,7 +28,7 @@ class Article:
     self.description = description
     self.date = date
 
-  # 
+  # метод для серилизации в json
   def to_dict(self):
         return {
             "title": self.title,
@@ -37,6 +37,7 @@ class Article:
             "date": self.date.isoformat()  # Convert date to ISO format string
         }
 
+  # метод для десериализации
   @staticmethod
   def from_dict(data):
         return Article(
@@ -90,7 +91,7 @@ def add_article():
         return view_articles(release_date_or_err)
     
     articles = get_articles()
-    articles.append(Article(title, author, descrtipion, release_date_or_err))
+    articles.insert(0, Article(title, author, descrtipion, release_date_or_err))
     set_articles(articles)
 
     redirect('/view_articles')
