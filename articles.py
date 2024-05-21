@@ -1,11 +1,12 @@
 import json
 import os
 from bottle import route, view, request, post, redirect
+from typing import Union
 from datetime import date
 
 WRITEPATH = 'articles.json'
 
-def parse_date(datestr: str) -> date | str:
+def parse_date(datestr: str) -> Union[date, str]:
     """
     Функция, проверяющая что дата соответствует формату iso и
     находится между нижней границей и текущей датой

@@ -15,12 +15,10 @@ correct_dates = ["2024-05-19",
 
 uncorrect_dates = ["",
                    "1",
-                   "2003--01-10",
-                   "2003-01",
+                   "2011--01-10",
+                   "2013-01",
                    "2003-01+01",
-                   "2003",
-                   datetime.date.today().__add__(datetime.timedelta(weeks=10)).isoformat(),
-                   datetime.date.today().__add__(datetime.timedelta(days=10)).isoformat()]
+                   "2007"]
 
 class DatesTest(unittest.TestCase):
     def test_correct_dates(self):

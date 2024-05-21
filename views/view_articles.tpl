@@ -1,8 +1,7 @@
 % rebase('layout.tpl', title='Полезные статьи', year=date_today.year)
 
-
-<p class="error-message"><a>{{error}}</a></p>
 <form method="post" class="article-form">
+    <p class="error-message"><a>{{error}}</a></p>
     <div class="form-group">
         <input type="text" size="50" name="AUTHOR" placeholder="Автор статьи">
     </div>
